@@ -192,7 +192,7 @@ jobs:
       statuses: write
     steps:
       - name: ci/checkout-repo
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           ref: ${{ inputs.commit_sha }}
@@ -200,7 +200,7 @@ jobs:
       # The lane list and the reader come from this workflow's own ref (github.sha), the tree the YAML
       # runs from. Never from the tested commit: a commit may predate the file (release cuts).
       - name: ci/checkout-trusted-lanes
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           ref: ${{ github.sha }}

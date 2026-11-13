@@ -97,7 +97,7 @@ jobs:
       # The lane list and the reader come from this workflow's own ref (github.sha), the tree the YAML
       # runs from. Never from the tested commit: a commit may predate the file (release cuts).
       - name: ci/checkout-trusted-lanes
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           ref: ${{ github.sha }}
@@ -139,7 +139,7 @@ jobs:
       - name: Restore triage answers
         if: ${{ !cancelled() && steps.result.outputs.state != 'success' }}
         continue-on-error: true
-        uses: actions/cache/restore@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: e2e-triage-answers.json
           key: e2e-triage-answers-${{ inputs.context_name }}-${{ fromJSON(inputs.composite_identity_json).gh_pr_number && format('pr{0}', fromJSON(inputs.composite_identity_json).gh_pr_number) || fromJSON(inputs.composite_identity_json).commit_sha }}-${{ github.run_id }}-${{ github.run_attempt }}
@@ -193,7 +193,7 @@ jobs:
       - name: Save triage answers
         if: always() && steps.result.outputs.state != 'success' && hashFiles('e2e-triage-answers.json') != ''
         continue-on-error: true
-        uses: actions/cache/save@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: e2e-triage-answers.json
           key: e2e-triage-answers-${{ inputs.context_name }}-${{ fromJSON(inputs.composite_identity_json).gh_pr_number && format('pr{0}', fromJSON(inputs.composite_identity_json).gh_pr_number) || fromJSON(inputs.composite_identity_json).commit_sha }}-${{ github.run_id }}-${{ github.run_attempt }}
