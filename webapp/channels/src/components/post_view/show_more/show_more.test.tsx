@@ -127,6 +127,39 @@ describe('components/post_view/ShowMore', () => {
         expect(container).toMatchSnapshot();
     });
 
+    test('should maintain maxHeight on collapsed view with compactDisplay', () => {
+        const ref = React.createRef<ShowMore>();
+        const {container} = renderWithContext(
+            <ShowMore
+                {...baseProps}
+                compactDisplay={true}
+                maxHeight={300}
+                ref={ref}
+            />,
+        );
+        act(() => {
+            ref.current?.setState({isOverflow: true, isCollapsed: true});
+        });
+        const textContainer = container.querySelector('.post-message__text-container');
+        expect(textContainer).toHaveStyle('max-height: 300px');
+    });
+
+    test('should retain full maxHeight without offset when collapsed with compactDisplay', () => {
+        const ref = React.createRef<ShowMore>();
+        const {container} = renderWithContext(
+            <ShowMore
+                {...baseProps}
+                compactDisplay={true}
+                ref={ref}
+            />,
+        );
+        act(() => {
+            ref.current?.setState({isOverflow: true, isCollapsed: true});
+        });
+        const textContainer = container.querySelector('.post-message__text-container');
+        expect(textContainer).toHaveStyle('max-height: 200px');
+    });
+
     test('should call checkTextOverflow', () => {
         const ref = React.createRef<ShowMore>();
         const {rerender} = renderWithContext(
