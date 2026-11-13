@@ -156,7 +156,7 @@ jobs:
       start_time: ${{ steps.matrix.outputs.start_time }}
     steps:
       - name: ci/checkout-repo
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           ref: ${{ inputs.commit_sha }}
@@ -210,7 +210,7 @@ jobs:
       # The lane list and the reader come from this workflow's own ref (github.sha), the tree the YAML
       # runs from. Never from the tested commit: a commit may predate the file (release cuts).
       - name: ci/checkout-trusted-lanes
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           ref: ${{ github.sha }}
@@ -250,7 +250,7 @@ jobs:
       cache-hit: ${{ steps.probe.outputs.cache-hit }}
     steps:
       - name: ci/checkout-repo
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           ref: ${{ inputs.commit_sha }}
@@ -311,7 +311,7 @@ jobs:
       statuses: write
     steps:
       - name: ci/checkout-repo
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           ref: ${{ inputs.commit_sha }}
@@ -373,7 +373,7 @@ jobs:
         # Sparse-checkout just .github/actions from the triggering ref (master)
         # so the composite action below is available before the full checkout
         # overwrites the workspace with inputs.commit_sha.
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           sparse-checkout: .github/actions
@@ -381,7 +381,7 @@ jobs:
       - name: ci/runner-prep-for-openldap
         uses: ./.github/actions/runner-prep-openldap
       - name: ci/checkout-repo
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           ref: ${{ inputs.commit_sha }}
@@ -437,7 +437,7 @@ jobs:
         if: always()
         # Debug files only: a failed upload must not fail a worker whose tests all ran.
         continue-on-error: true
-        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: cypress-${{ inputs.test_type }}-${{ inputs.server_edition }}-debug-${{ matrix.worker_index }}
           path: |
@@ -463,7 +463,7 @@ jobs:
       summary_ok: ${{ steps.summary.outcome == 'success' }}
     steps:
       - name: ci/checkout-repo
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: ci/run-summary
