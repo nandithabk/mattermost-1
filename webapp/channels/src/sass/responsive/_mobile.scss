@@ -762,7 +762,7 @@
             }
 
             .post-message--overflow {
-                @include mixins.clearfix;
+                overflow: clip;
             }
 
             .status-wrapper {
